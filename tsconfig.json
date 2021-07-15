@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "noEmit": true,
+    "lib": ["dom", "esnext", "es2015", "es2016", "es2017"],
+    "jsx": "react-native",
+    "tsx": "react-native",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "declaration": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,    "baseUrl": "./src",
+    "paths": {
+      "themes": ["themes/*"],
+      "screens": ["screens/*"],
+      "components": ["components/*"],
+      "mConstant": ["constant/*"],
+      "types": ["types/*"]
+    },
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": false
+  },
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+  ]
+}

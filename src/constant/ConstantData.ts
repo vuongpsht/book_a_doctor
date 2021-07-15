@@ -1,0 +1,27 @@
+export const constantData = {
+  toggle: ['Doctor', 'Video Consult'],
+  doctors: ['Yarik Nikolenko', 'Julien Thanos'],
+  symptomList: [
+    'symptom 1',
+    'symptom 2',
+    'symptom 3',
+    'symp 4',
+    'symp 5',
+    'symptom symptom6',
+    'symp 7',
+    'symptom 8',
+    'symptom 17',
+    'symptom 18',
+    'symptom 19',
+  ],
+  allSymptomList: [
+    'symptom 9',
+    'symptom 10',
+    'symptom 11',
+    'symptom 12',
+    'symptom 13',
+    'symptom 14',
+    'symptom 15',
+    'symptom 16',
+  ],
+};
