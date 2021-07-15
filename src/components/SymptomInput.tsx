@@ -3,8 +3,17 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {ShadowView} from './ShadowView';
 import {metrics} from '../themes/Dimension';
 import {ArrowDown, Clock, Search} from '../themes/image';
+import {modalStore} from '../store/ModalStore';
+import {ModalOpenEnum} from '../constant/ModalOpenEnum';
+import {useStore} from '../hooks/useRxStore';
+import {bookDoctorStore} from '../store/BookDoctorStore';
 
 export const SymptomInput = () => {
+  const date = useStore({
+    init: bookDoctorStore.bookingTime,
+    subject: bookDoctorStore.bookingTimeSubject,
+  });
+  const onPressDate = () => modalStore.open(ModalOpenEnum.DATEPICKER);
   return (
     <ShadowView style={s.container}>
       <TouchableOpacity style={s.content}>
@@ -13,9 +22,22 @@ export const SymptomInput = () => {
           <Text style={s.txt}>Add reason</Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={s.timeButton}>
-        <Clock width={20} height={20} />
-        <Text style={s.timeText}>now</Text>
+      <TouchableOpacity
+        onPress={onPressDate}
+        style={[
+          s.timeButton,
+          {
+            backgroundColor: !!date ? '#57DDBB' : '#EDB259',
+          },
+        ]}>
+        <Clock width={10} height={10} />
+        {date ? (
+          <Text style={s.timeText}>
+            {date.date} - {date.time}
+          </Text>
+        ) : (
+          <Text style={s.now}>now</Text>
+        )}
         <ArrowDown width={10} height={10} />
       </TouchableOpacity>
     </ShadowView>
@@ -56,8 +78,13 @@ const s = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
+  now: {
+    color: 'white',
+    marginHorizontal: 5,
+  },
   timeText: {
     color: 'white',
-    marginHorizontal: 10,
+    marginHorizontal: 5,
+    fontSize: 10,
   },
 });

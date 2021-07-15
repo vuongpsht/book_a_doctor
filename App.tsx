@@ -11,11 +11,13 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
 import {BookDoctor} from 'screens/BookDoctor';
+import {AppModal} from './src/components/AppModal';
 
 const App = () => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <BookDoctor />
+      <AppModal />
     </SafeAreaView>
   );
 };

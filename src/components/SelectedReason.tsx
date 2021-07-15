@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {metrics} from '../themes/Dimension';
 import {chunk} from 'lodash';
@@ -12,23 +12,25 @@ export const SelectedReason = () => {
     subject: bookDoctorStore.selectedSymptomSubject,
   });
   const data: SelectedSymptom[] = chunk(selectedSymptom, 3);
-  if (!!selectedSymptom) {
+  if (!!selectedSymptom.length) {
     return (
       <View style={s.container}>
-        <Text style={s.title}>Selected symptoms and reasons</Text>
+        <Text style={s.title}>Selected symptoms and reasons:</Text>
         <View>
           {data.map((symptoms, index) => {
             return (
               <View key={index.toString()} style={s.row}>
                 {symptoms.map((symptom) => {
                   const onPressItem = () => {
-                    bookDoctorStore.dispatchSelectedSymptom(symptom);
+                    bookDoctorStore.dispatchToggleSelectedList(symptom);
                   };
                   return (
-                    <TouchableOpacity onPress={onPressItem} style={s.item}>
-                      <Text style={s.txt}>{symptom}</Text>
-                      <Check width={7} height={7} color={'white'} />
-                    </TouchableOpacity>
+                    <Fragment key={symptom}>
+                      <TouchableOpacity onPress={onPressItem} style={s.item}>
+                        <Text style={s.txt}>{symptom}</Text>
+                        <Check width={7} height={7} color={'white'} />
+                      </TouchableOpacity>
+                    </Fragment>
                   );
                 })}
               </View>
@@ -57,7 +59,7 @@ const s = StyleSheet.create({
     paddingHorizontal: 10,
     marginHorizontal: 5,
     borderRadius: 7,
-    backgroundColor: '#48D7DF',
+    backgroundColor: '#32C2D0',
     shadowOffset: {
       width: 0,
       height: 0,

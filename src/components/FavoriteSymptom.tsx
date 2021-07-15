@@ -1,13 +1,17 @@
 import React, {Fragment} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {constantData} from '../constant/ConstantData';
 import {chunk} from 'lodash';
 import {SelectedSymptom} from '../types/DoctorStore';
 import {metrics} from '../themes/Dimension';
 import {Plus} from '../themes/image';
 import {bookDoctorStore} from '../store/BookDoctorStore';
+import {useStore} from '../hooks/useRxStore';
 export const FavoriteSymptom = () => {
-  const data: SelectedSymptom[] = chunk(constantData.symptomList, 3);
+  const favoriteSymptom = useStore({
+    init: bookDoctorStore.favoriteSymptom,
+    subject: bookDoctorStore.favoriteSymptomSubject,
+  });
+  const data: SelectedSymptom[] = chunk(favoriteSymptom, 3);
   return (
     <View style={s.container}>
       <Text style={s.title}>Choose symptoms and reasons:</Text>
@@ -16,7 +20,7 @@ export const FavoriteSymptom = () => {
           <View style={s.row} key={index.toString()}>
             {symptoms.map((symptom, index) => {
               const onPressItem = () => {
-                bookDoctorStore.dispatchSelectedSymptom(symptom);
+                bookDoctorStore.dispatchToggleSelectedList(symptom);
               };
               return (
                 <Fragment key={symptom}>

@@ -25,11 +25,13 @@
       "screens": ["screens/*"],
       "components": ["components/*"],
       "mConstant": ["constant/*"],
-      "types": ["types/*"]
+      "types": ["types/*"],
+      "hooks": ["hooks/*"]
     },
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "skipLibCheck": false
+    "skipLibCheck": false,
+    "experimentalDecorators": true,
   },
   "exclude": [
     "node_modules",

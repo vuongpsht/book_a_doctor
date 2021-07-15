@@ -1,6 +1,14 @@
 import {Subject} from 'rxjs';
-import {SelectedDoctors, SelectedSymptom} from '../../types/DoctorStore';
+import {
+  BookingTime,
+  SelectedDoctors,
+  SelectedSymptom,
+} from '../../types/DoctorStore';
 import {constantData} from '../../constant/ConstantData';
+import {
+  processDispatchArray,
+  processDispatchBookingTime,
+} from '../../utils/storeHelper';
 
 class BookDoctorStore {
   private _selectedDoctors: SelectedDoctors = [];
@@ -14,6 +22,11 @@ class BookDoctorStore {
   private _favoriteSymptom: SelectedSymptom = constantData.symptomList;
   private _favoriteSymptomSubject: Subject<SelectedSymptom> =
     new Subject<SelectedSymptom>();
+
+  private _bookingTime: BookingTime | undefined;
+  private _bookingTimeSubject: Subject<BookingTime | undefined> = new Subject<
+    BookingTime | undefined
+  >();
 
   get selectedDoctors(): SelectedDoctors {
     return this._selectedDoctors;
@@ -54,40 +67,36 @@ class BookDoctorStore {
     return this._favoriteSymptomSubject;
   }
 
+  get bookingTime(): BookingTime | undefined {
+    return this._bookingTime;
+  }
+
+  set bookingTime(value: BookingTime | undefined) {
+    this._bookingTime = value;
+    this.bookingTimeSubject.next(value);
+  }
+
+  get bookingTimeSubject(): Subject<BookingTime | undefined> {
+    return this._bookingTimeSubject;
+  }
   dispatchSelectedList(value: string) {
-    if (!this.selectedDoctors?.find((e) => e === value)) {
-      return (bookDoctorStore.selectedDoctors = [
-        ...this.selectedDoctors,
-        value,
-      ]);
-    } else {
-      const tmp = [...this.selectedDoctors].filter((e) => e !== value);
-      return (bookDoctorStore.selectedDoctors = tmp);
-    }
+    bookDoctorStore.selectedDoctors = processDispatchArray(
+      value,
+      this.selectedDoctors,
+    );
   }
-
-  dispatchSelectedSymptom(value: string) {
-    if (!this.selectedSymptom?.find((e) => e === value)) {
-      return (bookDoctorStore.selectedSymptom = [
-        ...this.selectedSymptom,
-        value,
-      ]);
-    } else {
-      const tmp = [...this.selectedSymptom].filter((e) => e !== value);
-      return (bookDoctorStore.selectedSymptom = tmp);
-    }
+  dispatchToggleSelectedList(value: string) {
+    bookDoctorStore.selectedSymptom = processDispatchArray(
+      value,
+      this.selectedSymptom,
+    );
+    bookDoctorStore.favoriteSymptom = processDispatchArray(
+      value,
+      this.favoriteSymptom,
+    );
   }
-
-  dispatchFavoriteSymptom(value: string) {
-    if (!this.favoriteSymptom?.find((e) => e === value)) {
-      return (bookDoctorStore.favoriteSymptom = [
-        ...this.selectedSymptom,
-        value,
-      ]);
-    } else {
-      const tmp = [...this.favoriteSymptom].filter((e) => e !== value);
-      return (bookDoctorStore.favoriteSymptom = tmp);
-    }
+  dispatchBookingTime(d: number, h: string) {
+    bookDoctorStore.bookingTime = processDispatchBookingTime(d, h);
   }
 }
 
