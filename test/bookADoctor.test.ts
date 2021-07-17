@@ -22,7 +22,7 @@ it('selected doctor should add to selectedDoctors, add element name Ana', functi
   expect(bookDoctorStore.selectedDoctors[0]).toBe('Ana');
 });
 
-it('selected doctor should remove Ana from selectedDoctors', function () {
+it('when selected doctor dispatch again should remove Ana from selectedDoctors', function () {
   bookDoctorStore.dispatchSelectedList('Ana');
   expect(bookDoctorStore.selectedDoctors.length).toBe(0);
 });
