@@ -27,3 +27,9 @@ yarn ios
 ```shell
 yarn i8
 ```
+
+###4. Lint & test
+
+```shell
+yarn test
+```

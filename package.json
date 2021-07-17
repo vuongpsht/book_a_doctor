@@ -6,7 +6,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start --port=19001",
-    "test": "jest ./test/*",
+    "test": "yarn lint && jest ./test/*",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "i8": "npx react-native run-ios --port=19001 --simulator=\"iPhone 8\" "
   },
