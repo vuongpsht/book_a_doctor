@@ -8,7 +8,8 @@
     "start": "react-native start --port=19001",
     "test": "yarn lint && jest ./test/*",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "i8": "npx react-native run-ios --port=19001 --simulator=\"iPhone 8\" "
+    "i8": "npx react-native run-ios --port=19001 --simulator=\"iPhone 8\" ",
+    "zip": "rm -rf node_modules android/app/build ios/Pods"
   },
   "dependencies": {
     "lodash": "^4.17.21",

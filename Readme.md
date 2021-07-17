@@ -33,3 +33,9 @@ yarn i8
 ```shell
 yarn test
 ```
+
+###5. Remove dependencies for zip
+
+```shell
+yarn zip
+```
