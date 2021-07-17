@@ -1,14 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {metrics} from '../../themes/Dimension';
+import {Text, TouchableOpacity, View} from 'react-native';
 import {DateScroller} from './DateScroller';
 import {HoursScroller} from './HoursScroller';
 import {ShadowView} from '../ShadowView';
 import {bookDoctorStore} from '../../store/BookDoctorStore';
 import {HOURS_RANGE} from '../../constant/DateConstant';
 import {modalStore} from '../../store/ModalStore';
-
-const ITEM_HEIGHT = 50;
+import {RowStyle as s} from './rowStyle';
 
 export const DatePicker = () => {
   const [days, setDays] = useState<number[]>([]);
@@ -40,7 +38,6 @@ export const DatePicker = () => {
           <DateScroller
             days={days}
             dateIndex={dateIndex}
-            ITEM_HEIGHT={ITEM_HEIGHT}
             setDateIndex={setDateIndex}
           />
         </View>
@@ -57,59 +54,3 @@ export const DatePicker = () => {
     </View>
   );
 };
-
-const s = StyleSheet.create({
-  container: {
-    height: metrics.screenHeight * 0.7,
-    backgroundColor: 'white',
-    borderRadius: 15,
-    paddingTop: 20,
-  },
-  titleGroup: {
-    paddingHorizontal: 10,
-  },
-  title: {
-    fontSize: 15,
-    fontWeight: '600',
-  },
-  subTitle: {
-    fontSize: 15,
-    fontWeight: '300',
-    marginBottom: 10,
-  },
-  datepickerWrapper: {
-    height: metrics.screenHeight * 0.45,
-    width: '100%',
-    flexDirection: 'row',
-  },
-  eachPart: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  detector: {
-    position: 'absolute',
-    width: '100%',
-    height: ITEM_HEIGHT,
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: '#48D7DF',
-    top: metrics.screenHeight * 0.2,
-    zIndex: -1,
-  },
-  btnWrapper: {
-    marginTop: 10,
-  },
-  btn: {
-    width: metrics.screenWidth * 0.9,
-    height: 40,
-    backgroundColor: '#48D7DF',
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
-  },
-  btnText: {
-    color: 'white',
-    fontSize: 20,
-  },
-});

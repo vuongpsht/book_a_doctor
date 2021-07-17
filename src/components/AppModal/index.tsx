@@ -22,7 +22,9 @@ export const AppModal = React.memo(
         style={s.modal}
         isVisible={visible}>
         <View style={s.container}>
-          {modalType && visible && <RenderModalContent modalType={modalType} />}
+          {!!modalType && visible && (
+            <RenderModalContent modalType={modalType} />
+          )}
         </View>
       </Modal>
     );

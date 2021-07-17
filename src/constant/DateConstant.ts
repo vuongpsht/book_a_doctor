@@ -31,4 +31,4 @@ export const HOURS_RANGE = [
   '14:00 - 15:00',
 ];
 
-export const ITEM_HEIGHT = 50;
+export const ITEM_HEIGHT = 60;

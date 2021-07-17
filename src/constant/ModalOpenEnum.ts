@@ -1,4 +1,4 @@
 export enum ModalOpenEnum {
-  SYMPTOM,
+  SYMPTOM = 1,
   DATEPICKER,
 }

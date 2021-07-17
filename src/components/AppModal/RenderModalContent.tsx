@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {ModalOpenEnum} from '../../constant/ModalOpenEnum';
 import {DatePicker} from './DatePicker';
 import {AddMoreSymptom} from './AddMoreSymptom';
-import {TouchableOpacity} from 'react-native';
+import {TouchableOpacity, Keyboard} from 'react-native';
 
 interface props {
   modalType: ModalOpenEnum;
@@ -20,7 +20,13 @@ export const RenderModalContent: FC<props> = React.memo(
       }
     };
 
-    return <TouchableOpacity activeOpacity={1}>{render()}</TouchableOpacity>;
+    const onPress = () => Keyboard.dismiss();
+
+    return (
+      <TouchableOpacity onPress={onPress} activeOpacity={1}>
+        {render()}
+      </TouchableOpacity>
+    );
   },
   () => true,
 );

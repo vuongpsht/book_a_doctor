@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useRef} from 'react';
 import {
   FlatList,
   NativeScrollEvent,
@@ -8,31 +8,36 @@ import {
   View,
 } from 'react-native';
 import {RowStyle as s} from './rowStyle';
-import {MONTH, WEEKDAY} from '../../constant/DateConstant';
+import {ITEM_HEIGHT, MONTH, WEEKDAY} from '../../constant/DateConstant';
 
 interface props {
   days: number[];
   dateIndex: number;
-  ITEM_HEIGHT: number;
   setDateIndex: (v: number) => void;
 }
 
-export const DateScroller: FC<props> = ({
-  dateIndex,
-  setDateIndex,
-  days,
-  ITEM_HEIGHT,
-}) => {
+export const DateScroller: FC<props> = ({dateIndex, setDateIndex, days}) => {
+  const dateRef = useRef<FlatList>(null);
   const handleChange = ({
     nativeEvent,
   }: NativeSyntheticEvent<NativeScrollEvent>) => {
     const {contentOffset} = nativeEvent;
-    const mIndex = contentOffset.y / 50;
-    setDateIndex(Math.floor(mIndex));
+    const ceilContentOffset = Math.ceil(contentOffset.y);
+    const mIndex = ceilContentOffset / ITEM_HEIGHT;
+    console.log({mIndex});
+    console.log('days.length', days.length);
+    if (Math.ceil(mIndex) + 1 < days.length) {
+      setDateIndex(Math.ceil(mIndex));
+    } else {
+      const lastIndex = days.length - 1;
+      dateRef?.current?.scrollToIndex({animated: true, index: lastIndex});
+      setDateIndex(lastIndex);
+    }
   };
 
   return (
     <FlatList
+      ref={dateRef}
       ListHeaderComponent={() => <View style={s.FooterHeader} />}
       ListFooterComponent={() => <View style={s.FooterHeader} />}
       showsVerticalScrollIndicator={false}
@@ -58,7 +63,7 @@ export const DateScroller: FC<props> = ({
         offset: ITEM_HEIGHT * index,
         index,
       })}
-      snapToAlignment={'start'}
+      snapToAlignment={'end'}
       decelerationRate={'fast'}
       pagingEnabled
       snapToInterval={ITEM_HEIGHT}

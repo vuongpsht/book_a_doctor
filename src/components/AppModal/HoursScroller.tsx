@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useRef} from 'react';
 import {
   FlatList,
   NativeScrollEvent,
@@ -16,16 +16,25 @@ interface props {
 }
 
 export const HoursScroller: FC<props> = ({timeIndex, setTimeIndex}) => {
+  const hoursRef = useRef<FlatList>(null);
+
   const handleChangeTime = ({
     nativeEvent,
   }: NativeSyntheticEvent<NativeScrollEvent>) => {
     const {contentOffset} = nativeEvent;
-    const mIndex = contentOffset.y / 50;
-    setTimeIndex(Math.floor(mIndex));
+    const mIndex = contentOffset.y / ITEM_HEIGHT;
+    if (Math.ceil(mIndex) + 1 < HOURS_RANGE.length) {
+      setTimeIndex(Math.ceil(mIndex));
+    } else {
+      const lastIndex = HOURS_RANGE.length - 1;
+      hoursRef?.current?.scrollToIndex({animated: true, index: lastIndex});
+      setTimeIndex(lastIndex);
+    }
   };
 
   return (
     <FlatList
+      ref={hoursRef}
       ListHeaderComponent={() => <View style={s.FooterHeader} />}
       ListFooterComponent={() => <View style={s.FooterHeader} />}
       showsVerticalScrollIndicator={false}

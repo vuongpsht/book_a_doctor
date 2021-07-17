@@ -23,6 +23,10 @@ class BookDoctorStore {
   private _favoriteSymptomSubject: Subject<SelectedSymptom> =
     new Subject<SelectedSymptom>();
 
+  private _personalSymptom: SelectedSymptom = constantData.allSymptomList;
+  private _personalSymptomSubject: Subject<SelectedSymptom> =
+    new Subject<SelectedSymptom>();
+
   private _bookingTime: BookingTime | undefined;
   private _bookingTimeSubject: Subject<BookingTime | undefined> = new Subject<
     BookingTime | undefined
@@ -79,6 +83,20 @@ class BookDoctorStore {
   get bookingTimeSubject(): Subject<BookingTime | undefined> {
     return this._bookingTimeSubject;
   }
+
+  get personalSymptom(): SelectedSymptom {
+    return this._personalSymptom;
+  }
+
+  set personalSymptom(value: SelectedSymptom) {
+    this._personalSymptom = value;
+    this.personalSymptomSubject.next(value);
+  }
+
+  get personalSymptomSubject(): Subject<SelectedSymptom> {
+    return this._personalSymptomSubject;
+  }
+
   dispatchSelectedList(value: string) {
     bookDoctorStore.selectedDoctors = processDispatchArray(
       value,
@@ -93,6 +111,10 @@ class BookDoctorStore {
     bookDoctorStore.favoriteSymptom = processDispatchArray(
       value,
       this.favoriteSymptom,
+    );
+    bookDoctorStore.personalSymptom = processDispatchArray(
+      value,
+      this.personalSymptom,
     );
   }
   dispatchBookingTime(d: number, h: string) {

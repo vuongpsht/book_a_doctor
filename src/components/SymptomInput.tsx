@@ -14,9 +14,10 @@ export const SymptomInput = () => {
     subject: bookDoctorStore.bookingTimeSubject,
   });
   const onPressDate = () => modalStore.open(ModalOpenEnum.DATEPICKER);
+  const onPressSymptom = () => modalStore.open(ModalOpenEnum.SYMPTOM);
   return (
     <ShadowView style={s.container}>
-      <TouchableOpacity style={s.content}>
+      <TouchableOpacity onPress={onPressSymptom} style={s.content}>
         <View style={s.subContainer}>
           <Search width={20} height={20} />
           <Text style={s.txt}>Add reason</Text>
