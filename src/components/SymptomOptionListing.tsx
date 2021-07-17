@@ -2,6 +2,7 @@ import React, {FC, Fragment} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Plus} from '../themes/image';
 import {SelectedSymptom} from '../types/DoctorStore';
+import {color} from '../themes/corlor';
 interface props {
   data: SelectedSymptom[];
   onPressItem: (v: string) => void;
@@ -12,15 +13,15 @@ export const SymptomOptionListing: FC<props> = ({data, onPressItem}) => {
       {data.map((symptoms, index) => {
         return (
           <View style={s.row} key={index.toString()}>
-            {symptoms.map((symptom, index) => {
+            {symptoms.map((symptom) => {
               return (
                 <Fragment key={symptom}>
                   <TouchableOpacity
                     onPress={() => onPressItem(symptom)}
                     style={s.item}
-                    key={index.toString()}>
+                    key={symptom}>
                     <Text style={s.txt}>{symptom}</Text>
-                    <Plus width={7} height={7} color={'#48D7DF'} />
+                    <Plus width={7} height={7} color={color.timeGreen} />
                   </TouchableOpacity>
                 </Fragment>
               );
@@ -51,7 +52,7 @@ const s = StyleSheet.create({
   },
 
   txt: {
-    color: '#48D7DF',
+    color: color.timeGreen,
     fontSize: 12,
     marginRight: 2,
   },

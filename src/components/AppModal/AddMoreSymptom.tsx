@@ -1,10 +1,17 @@
 import React from 'react';
-import {Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {RowStyle as s} from './rowStyle';
 import {ShadowView} from '../ShadowView';
 import {SelectedReason} from '../SelectedReason';
 import {SelectMoreSymptom} from '../SelectMoreSymptom';
 import {modalStore} from '../../store/ModalStore';
+import {color} from '../../themes/corlor';
 
 export const AddMoreSymptom = () => {
   const onPressSubmit = () => modalStore.close();
@@ -19,7 +26,7 @@ export const AddMoreSymptom = () => {
         <ShadowView style={s.txtInput}>
           <TextInput
             placeholder={'e.g Cough'}
-            placeholderTextColor={'#728196'}
+            placeholderTextColor={color.baseGrey}
           />
         </ShadowView>
       </View>
@@ -27,10 +34,7 @@ export const AddMoreSymptom = () => {
       <SelectMoreSymptom />
       <TouchableOpacity
         onPress={onPressSubmit}
-        style={[
-          s.btnWrapper,
-          {position: 'absolute', alignSelf: 'center', bottom: 30},
-        ]}>
+        style={[s.btnWrapper, ms.btnExt]}>
         <ShadowView style={s.btn}>
           <Text style={s.btnText}>Done</Text>
         </ShadowView>
@@ -38,3 +42,11 @@ export const AddMoreSymptom = () => {
     </View>
   );
 };
+
+const ms = StyleSheet.create({
+  btnExt: {
+    position: 'absolute',
+    alignSelf: 'center',
+    bottom: 30,
+  },
+});

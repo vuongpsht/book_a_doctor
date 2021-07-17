@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
+import {color} from '../themes/corlor';
 
 interface props {
   style?: StyleProp<ViewStyle>;
@@ -17,7 +18,7 @@ export const ShadowView: FC<props> = ({children, style}) => {
 
 const s = StyleSheet.create({
   container: {
-    backgroundColor: '#EBF4FE',
+    backgroundColor: color.white,
     overflow: 'hidden',
   },
   shadowTop: {
@@ -26,8 +27,8 @@ const s = StyleSheet.create({
     width: '100%',
     height: 2,
     borderRadius: 0.5,
-    shadowColor: '#000',
-    backgroundColor: '#EBF4FE',
+    shadowColor: color.black,
+    backgroundColor: color.white,
     shadowOffset: {
       width: 0,
       height: -4,
@@ -43,9 +44,9 @@ const s = StyleSheet.create({
     height: '100%',
     width: 2,
     borderRadius: 0.5,
-    backgroundColor: '#EBF4FE',
+    backgroundColor: color.white,
 
-    shadowColor: '#000',
+    shadowColor: color.black,
     shadowOffset: {
       width: -4,
       height: 0,

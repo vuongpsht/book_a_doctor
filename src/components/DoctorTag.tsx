@@ -3,6 +3,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Plus} from '../themes/image';
 import {bookDoctorStore} from '../store/BookDoctorStore';
 import {useStore} from '../hooks/useRxStore';
+import {color} from '../themes/corlor';
 
 interface props {
   name: string;
@@ -38,7 +39,7 @@ const EmptyTag = () => {
       <View style={s.container}>
         <Text>Add</Text>
         <View style={s.plusSvgWrapper}>
-          <Plus color={'black'} style={s.svg} width={40} height={40} />
+          <Plus color={color.black} style={s.svg} width={40} height={40} />
         </View>
       </View>
     </View>
@@ -59,7 +60,7 @@ const s = StyleSheet.create({
     paddingVertical: 13,
     paddingHorizontal: 15,
     borderRadius: 10,
-    shadowColor: '#000',
+    shadowColor: color.black,
     shadowOffset: {
       width: 0,
       height: 0,
@@ -72,10 +73,10 @@ const s = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: 'white',
+    borderColor: color.white,
   },
   containerSelected: {
-    borderColor: '#48D7DF',
+    borderColor: color.baseGreen,
   },
   containerUnselected: {
     borderColor: 'white',
@@ -97,7 +98,7 @@ const s = StyleSheet.create({
     borderStyle: 'dashed',
     paddingVertical: 5,
     paddingHorizontal: 7,
-    borderColor: '#48D7DF',
+    borderColor: color.baseGreen,
     borderWidth: 1,
     borderRadius: 10,
   },

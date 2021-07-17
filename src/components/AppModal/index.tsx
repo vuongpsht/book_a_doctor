@@ -4,6 +4,7 @@ import {modalStore} from 'store/ModalStore';
 import {StyleSheet, View} from 'react-native';
 import {RenderModalContent} from './RenderModalContent';
 import Modal from 'react-native-modal';
+import {color} from '../../themes/corlor';
 export const AppModal = React.memo(
   () => {
     const modalState = useStore({
@@ -39,7 +40,7 @@ const s = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: color.opacity50,
     justifyContent: 'flex-end',
   },
 });

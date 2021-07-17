@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {metrics} from '../../themes/Dimension';
 import {ITEM_HEIGHT} from '../../constant/DateConstant';
+import {color} from '../../themes/corlor';
 
 export const RowStyle = StyleSheet.create({
   container: {
@@ -36,7 +37,7 @@ export const RowStyle = StyleSheet.create({
     height: ITEM_HEIGHT,
     borderTopWidth: 1,
     borderBottomWidth: 1,
-    borderColor: '#48D7DF',
+    borderColor: color.baseGreen,
     top: metrics.screenHeight * 0.2,
     zIndex: -1,
   },
@@ -46,7 +47,7 @@ export const RowStyle = StyleSheet.create({
   btn: {
     width: metrics.screenWidth * 0.9,
     height: 40,
-    backgroundColor: '#48D7DF',
+    backgroundColor: color.baseGreen,
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
@@ -55,14 +56,14 @@ export const RowStyle = StyleSheet.create({
   txtInput: {
     width: metrics.screenWidth * 0.9,
     height: 40,
-    backgroundColor: '#EBF4FE',
+    backgroundColor: 'white',
     borderRadius: 10,
     justifyContent: 'center',
     alignSelf: 'center',
     paddingHorizontal: 10,
   },
   btnText: {
-    color: 'white',
+    color: color.white,
     fontSize: 20,
   },
   FooterHeader: {
@@ -74,11 +75,11 @@ export const RowStyle = StyleSheet.create({
     alignItems: 'center',
   },
   dateTxtSelected: {
-    color: '#48D7DF',
+    color: color.baseGreen,
     fontWeight: '700',
   },
   dateTxtUnSelected: {
-    color: '#C9CED4',
+    color: 'white',
     fontWeight: 'bold',
   },
   content: {

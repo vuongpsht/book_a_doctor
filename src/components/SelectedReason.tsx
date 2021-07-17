@@ -6,13 +6,14 @@ import {SelectedSymptom} from '../types/DoctorStore';
 import {Check} from '../themes/image';
 import {bookDoctorStore} from '../store/BookDoctorStore';
 import {useStore} from '../hooks/useRxStore';
+import {color} from '../themes/corlor';
 export const SelectedReason = () => {
   const selectedSymptom = useStore<SelectedSymptom>({
     init: bookDoctorStore.selectedSymptom,
     subject: bookDoctorStore.selectedSymptomSubject,
   });
   const data: SelectedSymptom[] = chunk(selectedSymptom, 3);
-  if (!!selectedSymptom.length) {
+  if (selectedSymptom.length) {
     return (
       <View style={s.container}>
         <Text style={s.title}>Selected symptoms and reasons:</Text>
@@ -28,7 +29,7 @@ export const SelectedReason = () => {
                     <Fragment key={symptom}>
                       <TouchableOpacity onPress={onPressItem} style={s.item}>
                         <Text style={s.txt}>{symptom}</Text>
-                        <Check width={7} height={7} color={'white'} />
+                        <Check width={7} height={7} color={color.white} />
                       </TouchableOpacity>
                     </Fragment>
                   );
@@ -59,7 +60,7 @@ const s = StyleSheet.create({
     paddingHorizontal: 10,
     marginHorizontal: 5,
     borderRadius: 7,
-    backgroundColor: '#32C2D0',
+    backgroundColor: color.baseGreen,
     shadowOffset: {
       width: 0,
       height: 0,

@@ -14,6 +14,6 @@ export function useStore<T>({init, subject}: RxStore<T>) {
     return () => {
       sub.unsubscribe();
     };
-  });
+  }, [init, subject]);
   return currState;
 }

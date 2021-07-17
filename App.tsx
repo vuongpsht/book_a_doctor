@@ -9,17 +9,23 @@
  */
 
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, StyleSheet} from 'react-native';
 import {BookDoctor} from 'screens/BookDoctor';
 import {AppModal} from './src/components/AppModal';
 
 const App = () => {
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={s.container}>
       <BookDoctor />
       <AppModal />
     </SafeAreaView>
   );
 };
+
+const s = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 export default App;

@@ -7,6 +7,7 @@ import {modalStore} from '../store/ModalStore';
 import {ModalOpenEnum} from '../constant/ModalOpenEnum';
 import {useStore} from '../hooks/useRxStore';
 import {bookDoctorStore} from '../store/BookDoctorStore';
+import {color} from '../themes/corlor';
 
 export const SymptomInput = () => {
   const date = useStore({
@@ -15,6 +16,10 @@ export const SymptomInput = () => {
   });
   const onPressDate = () => modalStore.open(ModalOpenEnum.DATEPICKER);
   const onPressSymptom = () => modalStore.open(ModalOpenEnum.SYMPTOM);
+  const btnStyle = {
+    ...s.timeButton,
+    backgroundColor: date ? color.timeGreen : color.timeOrange,
+  };
   return (
     <ShadowView style={s.container}>
       <TouchableOpacity onPress={onPressSymptom} style={s.content}>
@@ -23,14 +28,7 @@ export const SymptomInput = () => {
           <Text style={s.txt}>Add reason</Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity
-        onPress={onPressDate}
-        style={[
-          s.timeButton,
-          {
-            backgroundColor: !!date ? '#57DDBB' : '#EDB259',
-          },
-        ]}>
+      <TouchableOpacity onPress={onPressDate} style={btnStyle}>
         <Clock width={10} height={10} />
         {date ? (
           <Text style={s.timeText}>
@@ -62,7 +60,7 @@ const s = StyleSheet.create({
     alignItems: 'center',
   },
   txt: {
-    color: '#979EA8',
+    color: color.lightGrey,
     marginLeft: 10,
   },
   timeButton: {
@@ -70,7 +68,7 @@ const s = StyleSheet.create({
     right: 10,
     padding: 5,
     paddingHorizontal: 10,
-    backgroundColor: '#EDB259',
+    backgroundColor: color.timeOrange,
     borderRadius: 5,
     alignSelf: 'center',
     height: 30,
@@ -79,6 +77,7 @@ const s = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
+
   now: {
     color: 'white',
     marginHorizontal: 5,
