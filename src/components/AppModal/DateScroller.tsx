@@ -24,8 +24,6 @@ export const DateScroller: FC<props> = ({dateIndex, setDateIndex, days}) => {
     const {contentOffset} = nativeEvent;
     const ceilContentOffset = Math.ceil(contentOffset.y);
     const mIndex = ceilContentOffset / ITEM_HEIGHT;
-    console.log({mIndex});
-    console.log('days.length', days.length);
     if (Math.ceil(mIndex) + 1 < days.length) {
       setDateIndex(Math.ceil(mIndex));
     } else {

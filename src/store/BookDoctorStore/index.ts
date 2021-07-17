@@ -108,14 +108,19 @@ class BookDoctorStore {
       value,
       this.selectedSymptom,
     );
-    bookDoctorStore.favoriteSymptom = processDispatchArray(
-      value,
-      this.favoriteSymptom,
-    );
-    bookDoctorStore.personalSymptom = processDispatchArray(
-      value,
-      this.personalSymptom,
-    );
+
+    const reverse = !!constantData.allSymptomList.find((e) => value === e);
+    if (reverse) {
+      bookDoctorStore.personalSymptom = processDispatchArray(
+        value,
+        this.personalSymptom,
+      );
+    } else {
+      bookDoctorStore.favoriteSymptom = processDispatchArray(
+        value,
+        this.favoriteSymptom,
+      );
+    }
   }
   dispatchBookingTime(d: number, h: string) {
     bookDoctorStore.bookingTime = processDispatchBookingTime(d, h);
