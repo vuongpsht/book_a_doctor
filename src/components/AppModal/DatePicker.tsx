@@ -19,7 +19,6 @@ export const DatePicker = () => {
     }
     setDays(mDaysList);
   }, []);
-
   const onPressSubmit = () => {
     bookDoctorStore.dispatchBookingTime(
       days[dateIndex],

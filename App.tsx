@@ -12,6 +12,8 @@ import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {BookDoctor} from 'screens/BookDoctor';
 import {AppModal} from './src/components/AppModal';
+import {bookDoctorStore} from './src/store/BookDoctorStore';
+console.log(bookDoctorStore);
 
 const App = () => {
   return (

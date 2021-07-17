@@ -56,7 +56,7 @@ export const RowStyle = StyleSheet.create({
   txtInput: {
     width: metrics.screenWidth * 0.9,
     height: 40,
-    backgroundColor: 'white',
+    backgroundColor: color.white,
     borderRadius: 10,
     justifyContent: 'center',
     alignSelf: 'center',
@@ -75,11 +75,11 @@ export const RowStyle = StyleSheet.create({
     alignItems: 'center',
   },
   dateTxtSelected: {
-    color: color.baseGreen,
+    color: '#48D7DF',
     fontWeight: '700',
   },
   dateTxtUnSelected: {
-    color: 'white',
+    color: '#C9CED4',
     fontWeight: 'bold',
   },
   content: {
